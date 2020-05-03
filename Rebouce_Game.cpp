@@ -22,6 +22,9 @@ int comparel(int,int);             //level comaparision
 void start();                 //udf for 3,2,1,go effect
 void instruct();              //instructions page
 void gotoxy(short,short);	//for cursor placement
+void ShowConsoleCursor(bool); // to hide console cursor
+void SetConsoleSize();			//to set the size of console window
+void DisableMaxConsole();		//to disable maximising console window
 class gamer
 {
 	public:
@@ -58,8 +61,13 @@ class gamer
 	{
 	}
 }s1;
+
 int main()                   //start of main function
 {
+	SetConsoleSize();
+    DisableMaxConsole();
+	ShowConsoleCursor(false);
+    
 	while(1)
 	{
 		system("cls");
@@ -1388,4 +1396,29 @@ void start()
 
 	gotoxy(38,13);
 	printf("     ");
+}
+void ShowConsoleCursor(bool showFlag) // to hide console cursor
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO     cursorInfo;
+
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.dwSize   = 10;
+    cursorInfo.bVisible = showFlag; // to set cursor visibility
+    SetConsoleCursorInfo(out, &cursorInfo);
+}
+void SetConsoleSize()		//to set the size of console window
+{
+	HWND console = GetConsoleWindow();
+    RECT ConsoleRect;
+    GetWindowRect(console, &ConsoleRect); 
+    MoveWindow(console, ConsoleRect.left, ConsoleRect.top, 690, 425, TRUE);
+}
+void DisableMaxConsole()		//to disable console window maximizing
+{
+	HWND hwnd = GetConsoleWindow();
+	DWORD style = GetWindowLong(hwnd, GWL_STYLE);
+	style &= ~WS_MAXIMIZEBOX;
+	SetWindowLong(hwnd, GWL_STYLE, style);
+	SetWindowPos(hwnd, NULL, 0, 0, 0, 0, SWP_NOSIZE|SWP_NOMOVE|SWP_FRAMECHANGED);
 }
