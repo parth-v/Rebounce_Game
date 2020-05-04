@@ -1,5 +1,5 @@
 /*******************************************************************
-						REBOUNCE GAME
+		       REBOUNCE GAME
                     	SOURCE CODE
 *******************************************************************/
 #include<fstream>
@@ -11,20 +11,23 @@
 #include<iostream>
 #include<process.h>
 #include<string.h>
+
 using namespace std;
-void border1();               //for making still screen border
-void border();                //for making screen border
-void loading();               //for creating loading effect
-void dgameover(int,int,int);       //the last page for dual mode
-void gameover(int,int,int,int);    //the last page for single mode
-int compares(int,int);             //score comparision
-int comparel(int,int);             //level comaparision
-void start();                 //udf for 3,2,1,go effect
-void instruct();              //instructions page
-void gotoxy(short,short);	//for cursor placement
-void ShowConsoleCursor(bool); // to hide console cursor
+
+void border1();               		//for making still screen border
+void border();                		//for making screen border
+void loading();               		//for creating loading effect
+void dgameover(int,int,int);       	//the last page for dual mode
+void gameover(int,int,int,int);    	//the last page for single mode
+int compares(int,int);             	//score comparision
+int comparel(int,int);             	//level comaparision
+void start();                 		//udf for 3,2,1,go effect
+void instruct();              		//instructions page
+void gotoxy(short,short);		//for cursor placement
+void ShowConsoleCursor(bool); 		// to hide console cursor
 void SetConsoleSize();			//to set the size of console window
 void DisableMaxConsole();		//to disable maximising console window
+
 class gamer
 {
 	public:
@@ -65,7 +68,7 @@ class gamer
 int main()                   //start of main function
 {
 	SetConsoleSize();
-    DisableMaxConsole();
+    	DisableMaxConsole();
 	ShowConsoleCursor(false);
     
 	while(1)
@@ -76,23 +79,13 @@ int main()                   //start of main function
 
 		border();
 
-	//	textbackground(7);
-
-	//	textcolor(128+4);
-
 		gotoxy(28,10);
 		printf("WELCOME TO REBOUNCE!!!");
 
-	//	textcolor(4);
-
 		loading();
-
-	//	textcolor(4+128);
 
 		gotoxy(25,18);
 		printf("PRESS ANY KEY TO CONTINUE...");
-
-	//	textcolor(4);
 
 		getch();
 
@@ -108,12 +101,8 @@ int main()                   //start of main function
 
 		border1();
 
-	//	textcolor(4+128);			 //for light red text colour
-
 		gotoxy(26,10);
 		printf("CHOOSE THE GAME MODE:");
-
-	//	textcolor(4);
 
 		gotoxy(25,13);
 		printf("S-->SINGLE PLAYER MODE");
@@ -151,8 +140,6 @@ int main()                   //start of main function
 			system("cls");
 
 			border1();
-
-		//	textcolor(4);
 
 			gotoxy(22,12);
 			printf("PRESS 1 FOR NEW GAMER ACCOUNT");
@@ -329,8 +316,6 @@ int main()                   //start of main function
 
 							border1();
 
-						//	textcolor(4+128);
-
 							gotoxy(29,12);
 							printf("You have NO chances left");
 
@@ -356,12 +341,8 @@ int main()                   //start of main function
 
 				while(f2.read((char*)&s1,sizeof(s1)))
 				{
-				//	textcolor(4+128);
-
 					gotoxy(31,9);
 					printf("WELCOME GAMER");
-
-				//	textcolor(4);
 
 					gotoxy(31,11);
 					printf("Gamer Profile");
@@ -388,13 +369,10 @@ int main()                   //start of main function
 
 				f2.close();
 
-			//	textcolor(4+128);
-
 				gotoxy(25,19);
 
 				printf("PRESS ANY KEY TO CONTINUE...");
 				getch();
-			//	textcolor(4);
 				system("cls");
 
 				int speed=65,level=1,stik=0,dirn=0,x=0,y=0,turns=0,score=0;  /*level-display game level
@@ -757,10 +735,6 @@ int main()                   //start of main function
 			system("cls");
 
 			border();
-
-		//	textbackground(7);
-
-		//	textcolor(4);
 
 			int dspeed=65,dlevel=1,dstik1=0,dstik2=0,ddirn=0,dx=0,dy=0,dturns=0,dscore1=0,dscore2=0;  /*level-display game level
 								      dirn-for direction of the ball
@@ -1230,12 +1204,8 @@ void instruct()
 
 	border();
 
-//	textcolor(4+128);
-
 	gotoxy(31,2);
 	printf("HOW TO PLAY");
-
-//	textcolor(4);
 
 	gotoxy(28,4);
 	printf("SINGLE PLAYER MODE");
@@ -1282,12 +1252,8 @@ void instruct()
 	gotoxy(3,21);
 	printf("-->The level and speed of the game increases as the game progresses.");
 
-//	textcolor(4+128);
-
 	gotoxy(25,23);
 	printf("PRESS ANY KEY TO RETURN...");
-
-//	textcolor(4);
 
 	getch();
 }
@@ -1307,8 +1273,6 @@ void gameover(int score1,int level1,int hscore1,int hlvl1)                      
 	system("cls");
 
 	border();
-
-//	textcolor(128+4);
 
 	gotoxy(33,10);
 	printf("                                ");
@@ -1341,8 +1305,6 @@ void dgameover(int dscore10,int dscore20,int dlevel1)                          /
 
 	border();
 
-//	textcolor(4);
-
 	gotoxy(35,10);
 	printf("GAME OVER!");
 
@@ -1354,8 +1316,6 @@ void dgameover(int dscore10,int dscore20,int dlevel1)                          /
 
 	gotoxy(28,16);
 	printf("FINAL LEVEL REACHED: %d",dlevel1);           //to display the final level reached
-
-//	textcolor(4+128);
 
 	if(dscore10>dscore20)
 	{
